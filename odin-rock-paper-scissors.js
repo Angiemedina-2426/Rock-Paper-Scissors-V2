@@ -1,64 +1,137 @@
+const startButton = document.querySelector("#start-button");
+const startScreen = document.querySelector("#start-screen");
+const gameScreen = document.querySelector("#game-screen");
 
-function getComputerChoice() {
-  let randomNumber = Math.random();
+const quitButton = document.querySelector("#quit-btn");
+const quitModal = document.querySelector("#quit-modal");
+const quitConfirmButton = document.querySelector("#quitConfirmButton");
+const cancelButton = document.querySelector("#cancelButton");
 
-  if (randomNumber >= 0 && randomNumber < 1 / 3) {
-    return 'rock';
-  } else if (randomNumber >= 1 / 3 && randomNumber < 2 / 3) {
-    return 'paper';
-  } else if (randomNumber >= 2 / 3 && randomNumber < 1) {
-    return 'scissors'
-  }
+const yourChoiceImg = document.querySelector(".yourChoiceImg");
+const computerChoiceImg = document.querySelector(".computerChoiceImg");
+const buttons = document.querySelectorAll(".choice");
 
-}
+const result = document.querySelector(".resultStatement");
+const yourScoreStatement = document.querySelector(".yourScore");
+const computerScoreStatement = document.querySelector(".computerScore");
+const finalResult =document.querySelector(".finalResult");
 
-function getHumanChoice() {
-  let humanChoice = prompt('Choose rock, paper or scissors.', "");
+const resetButton = document.querySelector("#reset-btn");
 
-  if (humanChoice === null) {
-    return null;
-  }
-
-  humanChoice = humanChoice.toLowerCase();
-  return humanChoice;
-}
-
-
-
-function playGame() {
-  let humanScore = 0;
-  let computerScore = 0;
-  let tieRound = 0;
-
-  function playRound(humanChoice, computerChoice) {
-    if (humanChoice === computerChoice) {
-      console.log("It's a tie");
-      tieRound++;
-    } else if
-      ((humanChoice === 'rock' && computerChoice === 'scissors') || (humanChoice === 'paper' && computerChoice === 'rock') || (humanChoice === 'scissors' && computerChoice === 'paper')) {
-      humanScore++;
-      console.log(`You win! ${humanChoice} beats ${computerChoice}.Score: human = ${humanScore}, computer ${computerScore}`)
-    } else {
-      computerScore++;
-
-      console.log(`You lose! ${computerChoice} beats ${humanChoice}.Score: human = ${humanScore}, computer ${computerScore}`)
-    }
-  }
-
-  playRound(getHumanChoice(), getComputerChoice());
-  playRound(getHumanChoice(), getComputerChoice());
-  playRound(getHumanChoice(), getComputerChoice());
-  playRound(getHumanChoice(), getComputerChoice());
-  playRound(getHumanChoice(), getComputerChoice());
-
-
-  if (humanScore > computerScore) {
-    console.log(`You win!`)
-  } else if (humanScore < computerScore) {
-    console.log(`You lose!`);
-  } else {
-    console.log(`It's a tie!`);
-  }
-
-  console.log(` Final Score - Human: ${humanScore}, Computer: ${computerScore}, Ties: ${tieRound}`);
+const compChoices = ["rock", "paper","scissors"]
+const images = {
+    rock: "images/rock.png",
+    paper: "images/paper.png",
+    scissors: "images/scissors.png"
 };
+
+
+let yourScore = 0;
+let computerScore = 0;
+let roundsPlayed = 0;
+
+/*---SCREEN CONTROL---*/
+
+startButton.addEventListener("click", () => {
+    resetGame();
+
+    startScreen.classList.add("hidden");
+    gameScreen.classList.remove("hidden");
+});
+
+quitButton.addEventListener("click", () => {
+    quitModal.classList.remove("hidden");
+})
+
+quitConfirmButton.addEventListener("click", () => {
+    quitModal.classList.add("hidden");
+    gameScreen.classList.add("hidden");
+    startScreen.classList.remove("hidden");
+
+    resetGame();
+})
+
+cancelButton.addEventListener("click", () =>{
+    quitModal.classList.add("hidden");
+})
+
+/* ---- GAME CONTROL ----*/
+function getComputerChoice (){
+    const randomNumber = Math.floor(Math.random()*compChoices.length);
+    return  compChoices[randomNumber];
+}
+
+
+function playRound (playerChoice, computerChoice){
+    if (computerChoice === playerChoice){
+        result.textContent = `It's a tie! You both chose ${playerChoice}.`;
+    }
+    else if ((playerChoice === "rock" &&computerChoice === "scissors") 
+          ||(playerChoice === "paper" && computerChoice === "rock")
+          || (playerChoice === "scissors" && computerChoice === "paper"))
+    {
+        result.textContent = `You win! ${playerChoice} beats ${computerChoice}.`;
+        yourScore ++;
+    } else {
+        result.textContent = `You lose! ${computerChoice} beats ${playerChoice}.`;
+        computerScore ++;
+    }
+    yourScoreStatement.textContent = `${yourScore}`;
+    computerScoreStatement.textContent = `${computerScore}`;
+}
+
+function displayFinalResult (){
+    if (yourScore > computerScore){
+        finalResult.textContent = "Final Result: You Win";
+    }else if(yourScore < computerScore)
+        {finalResult.textContent = "Final Result: You Lose";       
+    }else{ finalResult.textContent = "Final Result: It's a tie!";     
+    }
+    setChoiceButtonsDisabled(true);
+}
+
+function setChoiceButtonsDisabled(disabled){
+    buttons.forEach(button =>{
+        button.disabled = disabled;
+    })
+}
+
+buttons.forEach(button =>{
+    button.addEventListener("click", () =>{
+        if (roundsPlayed >=5){
+        return;
+        }
+
+        const playerChoice = button.dataset.choice;
+        yourChoiceImg.src = images[playerChoice];
+
+        const computerChoice = getComputerChoice();
+        computerChoiceImg.src = images[computerChoice];
+
+        playRound(playerChoice, computerChoice);
+        roundsPlayed++;
+        if(roundsPlayed ===5){
+        displayFinalResult();
+        setChoiceButtonsDisabled(true)};
+    });
+});
+/*---- RESET CONTROL ----*/
+
+function resetGame() {
+    yourScore = 0;
+    computerScore = 0;
+    roundsPlayed = 0;
+
+    yourScoreStatement.textContent = "0";
+    computerScoreStatement.textContent = "0";
+
+    result.textContent = "Let's begin. Click your choice below!";
+    finalResult.textContent = "";
+
+    yourChoiceImg.src = "images/questionmark.png";
+    computerChoiceImg.src = "images/questionmark.png";
+
+    setChoiceButtonsDisabled(false);
+}
+
+resetButton.addEventListener("click", resetGame);
