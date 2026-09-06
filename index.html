@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Odin_Rock_Paper_Scissors</title>
+  <link rel="stylesheet" href="odin-rps-ui.css">
+
+</head>
+
+<body>
+  <div id="start-screen">
+    <div class="start-box">
+    <h1>Rock Paper Scissors</h1>
+      <button id="start-button">Play Game</button>
+  </div>
+  </div>
+
+  <div id="game-screen" class="hidden">
+    <div class="main-box">
+            <div class="playerBox box">
+                <span>Your Choice</span>
+                <img class="yourChoiceImg" src="images/questionmark.png" alt="Your selected choice">
+            </div>
+            <div class="vs box">
+                VS
+            </div>
+            <div class="computerBox box">
+                <span>Computer Choice</span>
+                <img class="computerChoiceImg" src="images/questionmark.png" alt="Computer's selected choice">
+            </div>
+    </div>
+    <div class="resultNScore">
+      <span class="resultStatement">Let's begin. Click your choice below!</span>
+      <span class="finalResult"></span>
+      <div class="scoreboard">
+        <div class="yourScore">0</div>
+        <div class="computerScore">0</div>
+      </div>
+    </div>
+    <div class="interactiveButtons">
+      <div class="choice-box">
+            <button class="choice" data-choice="rock" ><img src="images/rock.png" alt="rock"></button>
+            <button class="choice" data-choice="paper"><img src="images/paper.png" alt="paper"></button>
+            <button class="choice" data-choice="scissors"><img src="images/scissors.png" alt="scissors"></button>
+      </div>
+
+      <div class="game-options">
+            <button id="reset-btn">Reset</button>
+            <button id="quit-btn">Quit Game</button>
+      </div>
+      
+    </div>
+  </div>
+  <div id="quit-modal" class="hidden">
+    <div id="quit-box">
+      <h2>Are you sure?</h2>
+      <button id="quitConfirmButton">Quit Game</button>
+      <button id="cancelButton">Cancel</button>
+    </div>
+  </div>
+
+  <script src="odin-rock-paper-scissors.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,386 @@
+@import url('https://fonts.googleapis.com/css2?family=Erica+One&family=Fredoka:wght@300..700&display=swap');
+
+
+:root {
+  --navy: #304269;
+
+  --sky: #69D8FF;
+  --mint: #79F2C0;
+  --lemon: #FFE66D;
+  --peach: #FFB870;
+  --pink: #FF74B1;
+  --lavender: #B48CFF;
+
+  --cream: #FFF9F1;
+  --white: #FFFFFF;
+
+  --shadow: #27345D;
+
+   --danger-bg: #FFE2E6;
+  --danger-red: #FF6B81;
+  --danger-dark: #D9485F;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+
+body {
+   background:
+        radial-gradient(circle at 20% 20%, #FFD8F3 0%, transparent 25%),
+        radial-gradient(circle at 80% 15%, #D9F5FF 0%, transparent 25%),
+        radial-gradient(circle at 30% 80%, #FFF3B5 0%, transparent 25%),
+        radial-gradient(circle at 85% 85%, #D7FFD9 0%, transparent 25%),
+        linear-gradient(135deg, #FFF7E6, #FFEFFF, #EEF8FF);
+
+  background-attachment: fixed;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  font-family: "Fredoka", sans-serif;
+}
+/*-------- Start Screen -------------------*/
+#start-screen {
+  border: 5px solid var(--navy);
+  background-color: var(--cream);
+  border-radius: 2rem;
+  width: min(1000px, 90vw);
+  min-height: 80vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding: 2rem;
+  text-align: center;
+  overflow: hidden;
+}
+
+h1 {
+    font-family:"Erica One",sans-serif;
+    font-size:6rem;
+    color:var(--pink);
+    -webkit-text-stroke:3px var(--navy);
+    text-shadow:
+        0 8px 0 var(--lavender),
+        0 14px 20px rgba(0,0,0,.18);
+}
+
+
+#start-button {
+  font-family: "Fredoka",sans-serif;
+  font-size: 4rem;
+  padding: 1rem 4rem;
+  font-weight: 700;
+
+  background:linear-gradient(
+    135deg,
+    var(--mint),
+    var(--sky));
+
+
+  border: 5px solid var(--navy);
+  border-radius: 0.5em;
+  color: var(--white);
+  box-shadow: 0 8px 0 var(--navy);
+
+}
+
+.start-box {
+  margin: 2rem;
+}
+
+
+
+/*-----GAME SCREEN UI-----*/
+#game-screen {
+  border: 5px solid var(--navy);
+  border-radius: 5rem;
+  width: min(1000px, 90vw);
+  min-height: 80vh;
+
+  margin: 0 auto;
+  background-color: white;
+}
+
+.main-box {
+    margin: 2rem auto;
+    width: 90%;
+    height: 400px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 1rem;
+    
+}
+
+
+
+.main-box > .box {
+    width: 35%;
+    border: 4px solid var(--sky);
+    border-radius: 2.5rem;
+    background-color: var(--cream);
+    padding: 1rem;
+    color: var(--mint);
+    -webkit-text-stroke:3px var(--navy);
+    text-shadow:
+        0 8px 0 var(--lavender),
+        0 14px 20px rgba(0,0,0,.18);
+
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main-box > .box span {
+  flex-shrink: 0;
+  width: 100%;
+  height: 110px;
+
+}
+
+.main-box .box img {
+    display: block;
+    width: 100%;
+    max-width: 250px;
+    height: 250px;
+    object-fit: contain;
+
+    margin-block: auto;
+}
+
+
+.main-box span {
+    font-size: 2.5rem;
+    font-family: "Erica One", sans-serif;
+    text-align: center;
+
+}
+
+div.main-box .vs{
+    align-self: center;
+    justify-content: center;
+
+    font-size: 4rem;
+    font-family: "Erica One", sans-serif;
+    text-align: center;
+    width: 20%
+}
+
+.resultNScore {
+  width: 90%;
+  height: 250px;
+  margin: 0 auto;
+  font-family: "Erica One", sans-serif;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 0.5rem;
+}
+
+.resultStatement{
+  display: block;
+  width: 100%;
+
+  font-size: 2.5rem;
+  text-align: center;
+  
+  color: var(--sky);
+-webkit-text-stroke: 2px var(--navy);
+
+text-shadow:
+    0 4px 0 var(--mint),
+    0 6px 10px rgba(0,0,0,.15);
+}
+
+.finalResult {
+  font-size: 3rem;
+  text-align: center;
+}
+.scoreboard {
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.yourScore, .computerScore {
+  width: 35%;
+  text-align: center;
+ 
+font-family: "Erica One", sans-serif;
+    font-size: 5rem;
+    padding: 0;
+
+    color: var(--navy);
+}
+
+.yourScore {
+    color: var(--sky);
+    text-shadow: 0 2px 0 var(--navy);
+}
+
+.computerScore {
+    color: var(--pink);
+    text-shadow: 0 2px 0 var(--navy);
+}
+
+.interactiveButtons {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: stretch;
+    gap: 20px;
+    padding: 30px;
+}
+
+.choice-box {
+    flex: 0 1 60%;
+    display:flex;
+    gap: 15px;
+}
+
+button.choice {
+    flex: 1;
+    min-width: 0;
+    padding: 10px;
+    border: 3px solid black;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+button.choice img {
+    display: block;
+    width: 100%;
+    height: 150px;
+    object-fit: contain;
+}
+
+.game-options {
+    flex: 0 1 20%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.game-options button {
+    flex: 1;
+    width: 100%;
+    padding: 1rem;
+  
+       font-family: "Fredoka", sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--navy);
+
+    background: linear-gradient(
+        180deg,
+        var(--lemon),
+        var(--peach)
+    );
+
+    border: 4px solid var(--navy);
+    border-radius: 18px;
+
+    box-shadow:
+        0 6px 0 var(--navy),
+        inset 0 2px 0 rgba(255,255,255,.6);
+
+    cursor: pointer;
+    transition: transform .15s ease, box-shadow .15s ease;
+}
+
+.game-options button:hover {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow:
+        0 8px 0 var(--navy),
+        inset 0 2px 0 rgba(255,255,255,.6);
+}
+
+.game-options button:active {
+    transform: translateY(4px);
+    box-shadow:
+        0 2px 0 var(--navy),
+        inset 0 2px 0 rgba(255,255,255,.6);
+}
+
+
+#quit-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: rgb(255 255 255 / 50%);
+}
+
+#quit-box {
+    width: min(400px, 90vw);
+    padding: 2rem;
+
+    background: var(--danger-bg);
+    border: 4px solid var(--danger-red);
+    border-radius: 20px;
+
+    text-align: center;
+}
+
+#quit-box h2 {
+    font-family: "Erica One", sans-serif;
+    font-size: 2rem;
+
+    color: var(--danger-dark);
+    margin-bottom: 1.5rem;
+}
+
+#quit-box button {
+    font-family: "Fredoka", sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+
+    padding: 0.8rem 1.5rem;
+    margin: 0.5rem;
+
+    border: none;
+    border-radius: 12px;
+
+    cursor: pointer;
+}
+
+#quitConfirmButton {
+    background: var(--var-red);
+    color: white;
+}
+
+#cancelButton {
+    background: #E5E5E5;
+    color: #333;
+}
+
+#quitConfirmButton:hover {
+    background: #B71C1C;
+}
+
+#cancelButton:hover {
+    background: #D5D5D5;
+}
+.hidden {
+  display: none !important;
+}
+.choice:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
